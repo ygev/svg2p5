@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://unpkg.com/canvg@3.0.4/lib/umd.js"></script>
+    <title>SVG 2 P5</title>
+</head>
+<body>
+
+    <section class="svg__wrapper">
+        <label for="svg">SVG path</label>
+        <textarea id="svgTextArea" name="svg" rows="4" cols="50">
+        </textarea> 
+        <button>Convert</button>
+    </section>
+
+
+    <section class="p5__wrapper">
+        <label for="p5">p5 canvas</label>
+        <textarea id="p5TextArea" name="p5" rows="4" cols="50">
+        </textarea> 
+    </section>
+
+    <canvas></canvas>
+</body>
+<script type="text/javascript">
+window.onload = async () => {
+
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    v = await canvg.Canvg.from(ctx, 'booba.svg');
+    console.log(ctx)
+
+    // Start SVG rendering with animations and mouse handling.
+    v.start();
+
+};
+</script>
+</html>
+
