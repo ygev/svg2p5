@@ -49,8 +49,81 @@ var cvd = function () {
     return that;
 }();      
 
-// Jquery disgusting starts here
+// Canvas to P5
+function canvasToP5(cvd){
+    let p5cvd = cvd.getOutput()
+        .replaceAll('ctx.','')
+        .replaceAll('beginPath()','beginShape()')
+        .replaceAll('closePath()','endShape()')
+        .replaceAll('moveTo(','vertex(')
+        .replaceAll('lineTo(','vertex(')
+        .replaceAll('bezierCurveTo(','bezierVertex(')
+        .replaceAll('lineCap','strokeCap()')
+        .replaceAll('lineJoin','strokeJoin()')
+        .replaceAll('clip()','drawingContext.clip()')
+        .replaceAll('fillStyle','fill()')
+        .replaceAll('save()','drawingContext.save()')
+        .replaceAll('restore()','drawingContext.restore()')
+        .replaceAll('lineWidth','strokeWeight()')
+        .replaceAll('strokeStyle','stroke()')
+    // TODO: fill("content") instead of fill() = "content" DONE
+    // TODO: stroke("content") instead of stroke() = "content" DONE
+    // TODO: strokeWeight(number) instead of strokeWeight() = "number" DONE
+    // TODO: strokeCap(content) instead of strokeCap() = "content" DONE
+    // TODO: strokeJoin(content) instead of strokeJoin() = "content" DONE
+    // TODO: delete anything starting with miterLimit && ending with ; DONE?
+    // TODO: replace (butt) inside strokeCap() with acceptable things and uppercase them
+    // TODO: uppercase contents of strokeJoin
+    // TODO: delete all empty fill() stroke() etc.
+    // MAYBE TODO: turn decimals into integers
 
+    // split this into an array of strings, one per line
+    var p5cvdArr = p5cvd.split('\n')
+
+    for (let i = 0; i < p5cvdArr.length; i++){
+        if (p5cvdArr[i].startsWith("miterLimit") || p5cvdArr[i].startsWith("fill();") || p5cvdArr[i].startsWith("stroke();") ){
+            p5cvdArr.splice(i, 1);
+            i--;
+            continue; // we just erased the current element; go to next element now
+        }
+
+        if(p5cvdArr[i].startsWith("fill") && p5cvdArr[i].includes("=")){
+            let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 1, p5cvdArr[i].indexOf(";"))
+            p5cvdArr[i] = "fill(" + content.trim() + ")"
+            // console.log(p5cvdArr[i]);
+        }
+        else if (p5cvdArr[i].startsWith("stroke(") && p5cvdArr[i].includes("=")){
+            let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 1, p5cvdArr[i].indexOf(";"))
+            p5cvdArr[i] = "stroke(" + content.trim() + ")"
+            // console.log(p5cvdArr[i]);
+        }
+        else if (p5cvdArr[i].startsWith("strokeWeight") && p5cvdArr[i].includes("=")){
+            let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 1, p5cvdArr[i].indexOf(";"))
+            p5cvdArr[i] = "strokeWeight(" + content.trim() + ")"
+            // console.log(p5cvdArr[i]);
+        }
+        else if (p5cvdArr[i].startsWith("strokeCap") && p5cvdArr[i].includes("=")){
+            let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 3, p5cvdArr[i].indexOf(";") - 1)
+            p5cvdArr[i] = "strokeCap(" + content.trim().toUpperCase() + ");"
+            // console.log(p5cvdArr[i]);
+        }
+        else if (p5cvdArr[i].startsWith("strokeJoin") && p5cvdArr[i].includes("=")){
+            let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 3, p5cvdArr[i].indexOf(";") - 1)
+            p5cvdArr[i] = "strokeJoin(" + content.trim().toUpperCase() + ");"
+            // console.log(p5cvdArr[i]);
+        }
+
+        if (p5cvdArr[i].startsWith("strokeCap(BUTT)")){
+            p5cvdArr[i] = "strokeCap(PROJECT);"
+        }
+    }
+
+    p5cvd = p5cvdArr.join('\n')
+
+    return p5cvd;
+}
+
+// Jquery disgusting starts here
 
 $(document).ready(function(){
 
@@ -75,12 +148,11 @@ $(document).ready(function(){
                   var	str = $.trim( $('#svg-input').val());
                   canvg('temp',  str);
            
-        console.log(cvd.getOutput())
-                  $('#js-output').val( 'var draw = function(ctx) {\n' + cvd.getOutput() + '};' );
                   cvd.restoreFuncs();
-                  canvas2.width = canvas.width;
-                   canvas2.height = canvas.height;
-                  var fn = new Function('ctx',cvd.getOutput());
-                  fn(ctx2);                                  
-          });			 
+                  let p5cvd = canvasToP5(cvd)
+                  $('#js-output').val(  p5cvd );  
+                 
+                  console.log(canvasToP5(cvd))                     
+          });	
+          		 
 });
