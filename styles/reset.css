@@ -57,3 +57,7 @@ input, textarea, button {
 	min-height: 50vh;
 	max-height: 50vh;
   }
+
+  ::selection {
+	background: rgba(234, 37, 96, 0.25);
+  }

@@ -143,4 +143,10 @@ $(document).ready(function(){
                  
                   console.log(canvasToP5(cvd))                     
           });
+          
+          $("#copy-button").click(function(){
+            $("#js-output").select();
+            document.execCommand('copy');
+            $("#js-output").unselect();
+        });
 });
