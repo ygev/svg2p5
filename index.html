@@ -24,9 +24,10 @@
         </header>
         <article>
             <p>
-                svg2p5 converts SVG markup into p5.js canvas code. It is based on <a class="inline-link" href="https://www.professorcloud.com/svg-to-canvas/"> Professor Cloud</a>’s SVG to HTML5 Converter and the <a class="inline-link" href="https://github.com/canvg/canvg">Canvg.js</a> library.
+                svg2p5 converts SVG markup into p5.js canvas code. It is based on <a class="link-inline" href="https://www.professorcloud.com/svg-to-canvas/" target="_blank" rel="noopener noreferrer"> Professor Cloud</a>’s SVG to HTML5 Converter and the <a class="link-inline" href="https://github.com/canvg/canvg" target="_blank" rel="noopener noreferrer">Canvg.js</a> library.
             </p>
         </article>
+        <a href="https://github.com/ygev/svg2p5" target="_blank" rel="noopener noreferrer"><div class="link-big"> 🌱 GitHub Repository</div></a>
     </section>
 
     <section class="svg__wrapper">
@@ -35,10 +36,11 @@
                 <h1>SVG Markup</h1>
             </label>
         </div>
-        <textarea id="svg-input" name="svg" rows="4" cols="50">
-        </textarea> 
-        <button id="convert-button">Convert</button>
-        <button id="clear-button">Clear</button>
+        <textarea id="svg-input" name="svg" rows="4" cols="50"></textarea> 
+        <div class="buttons">
+            <button id="clear-button">Clear</button>
+            <button id="convert-button">Convert</button>
+        </div>
     </section>
 
     <section class="p5__wrapper">
@@ -47,16 +49,18 @@
                 <h1>p5 Canvas</h1>
             </label>
         </div>
-        <textarea id="js-output" name="p5" rows="4" cols="50">
-        </textarea> 
+        <textarea id="js-output" name="p5" rows="4" cols="50"></textarea> 
+        <div class="buttons">
+            <button>Copy</button>
+        </div>
     </section>
 
     <canvas id="temp2"></canvas>
     <canvas id="temp"></canvas>
     <script>
         function setup() {
-            createCanvas(windowWidth, windowHeight);
-            background(153);
+            createCanvas((windowWidth - 32), windowHeight);
+            background(154);
         }
         function draw() {
             let p5Code = document.getElementById("js-output").value;

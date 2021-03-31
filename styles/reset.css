@@ -50,3 +50,10 @@ input, textarea, button {
 	background: none;
 	margin: 0;
   }
+  
+  textarea {
+	max-width: 99%;
+	min-width: 99%;
+	min-height: 50vh;
+	max-height: 50vh;
+  }
