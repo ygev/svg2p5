@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script type="text/javascript" src="https://unpkg.com/canvg@3.0.4/lib/umd.js"></script> -->
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/main.css">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.3.0/lib/p5.js"></script>
     <script type="text/javascript" src="canvg.js"></script>
@@ -12,37 +13,59 @@
     <title>SVG 2 P5</title>
 </head>
 <body>
+    <section class="infobox">
+        <header class="topper topper__white">
+            <div class="title-side title-left">
+                <h1>svg2p5</h1>
+            </div>
+            <div class="title-side">
+                <h1>Converter</h1>
+            </div>
+        </header>
+        <article>
+            <p>
+                svg2p5 converts SVG markup into p5.js canvas code. It is based on <a class="inline-link" href="https://www.professorcloud.com/svg-to-canvas/"> Professor Cloud</a>’s SVG to HTML5 Converter and the <a class="inline-link" href="https://github.com/canvg/canvg">Canvg.js</a> library.
+            </p>
+        </article>
+    </section>
 
     <section class="svg__wrapper">
-        <label for="svg">SVG path</label>
+        <div class="topper topper__white">
+            <label for="svg">
+                <h1>SVG Markup</h1>
+            </label>
+        </div>
         <textarea id="svg-input" name="svg" rows="4" cols="50">
         </textarea> 
         <button id="convert-button">Convert</button>
         <button id="clear-button">Clear</button>
     </section>
 
-
     <section class="p5__wrapper">
-        <label for="p5">p5 canvas</label>
+        <div class="topper topper__white">
+            <label for="p5">
+                <h1>p5 Canvas</h1>
+            </label>
+        </div>
         <textarea id="js-output" name="p5" rows="4" cols="50">
         </textarea> 
     </section>
 
     <canvas id="temp2"></canvas>
     <canvas id="temp"></canvas>
+    <script>
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            background(153);
+        }
+        function draw() {
+            let p5Code = document.getElementById("js-output").value;
+            if (p5Code)
+                eval(p5Code);
+            else
+                clear();            
+        }
+    </script>
 </body>
-<!-- <script type="text/javascript">
-window.onload = async () => {
-
-    const canvas = document.querySelector('canvas');
-    const ctx = canvas.getContext('2d');
-
-    v = await canvg.Canvg.from(ctx, 'booba.svg');
-    console.log(ctx)
-
-    // Start SVG rendering with animations and mouse handling.
-    v.start();
-};
-</script> -->
 </html>
 

@@ -66,16 +66,6 @@ function canvasToP5(cvd){
         .replaceAll('restore()','drawingContext.restore()')
         .replaceAll('lineWidth','strokeWeight()')
         .replaceAll('strokeStyle','stroke()')
-    // TODO: fill("content") instead of fill() = "content" DONE
-    // TODO: stroke("content") instead of stroke() = "content" DONE
-    // TODO: strokeWeight(number) instead of strokeWeight() = "number" DONE
-    // TODO: strokeCap(content) instead of strokeCap() = "content" DONE
-    // TODO: strokeJoin(content) instead of strokeJoin() = "content" DONE
-    // TODO: delete anything starting with miterLimit && ending with ; DONE?
-    // TODO: replace (butt) inside strokeCap() with acceptable things and uppercase them
-    // TODO: uppercase contents of strokeJoin
-    // TODO: delete all empty fill() stroke() etc.
-    // MAYBE TODO: turn decimals into integers
 
     // split this into an array of strings, one per line
     var p5cvdArr = p5cvd.split('\n')
@@ -126,7 +116,6 @@ function canvasToP5(cvd){
 // Jquery disgusting starts here
 
 $(document).ready(function(){
-
     var canvas = $('#temp')[0],
               ctx = canvas.getContext('2d'),  
               canvas2 = $('#temp2')[0],
@@ -153,6 +142,5 @@ $(document).ready(function(){
                   $('#js-output').val(  p5cvd );  
                  
                   console.log(canvasToP5(cvd))                     
-          });	
-          		 
+          });
 });
