@@ -147,6 +147,13 @@ $(document).ready(function(){
           $("#copy-button").click(function(){
             $("#js-output").select();
             document.execCommand('copy');
-            $("#js-output").unselect();
+            document.getElementById("copy-button").innerHTML = "Copied!";
+            document.getElementById("copy-button").style.color = "var(--white)";
+            document.getElementById("copy-button").style.background = "var(--black)";
+            setInterval(function() {
+                document.getElementById("copy-button").innerHTML = "Copy";
+                document.getElementById("copy-button").style.color = "var(--black)";
+                document.getElementById("copy-button").style.background = "var(--pink)";
+              }, 3000);
         });
 });

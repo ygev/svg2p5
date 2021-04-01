@@ -1,0 +1,54 @@
+@media only screen and (min-width: 1024px) {
+    body {
+      flex-direction: row;
+      padding: 6vw;
+    }
+
+    .bottom-text {
+        display: block;
+    }
+
+    em {
+        font-weight: 700;
+        font-family: Roboto;
+        font-size: 15px;
+        line-height: 160%;
+    }
+
+    ul li::before {
+        content: "✱";
+        color: var(--pink);
+        font-weight: bold;
+        display: inline-block; 
+        width: 1.2em;
+      }
+      
+    ul {
+        margin-bottom: 16px;
+    }
+
+    .pinktxt {
+        color: var(--pink);
+    }
+
+    li {
+        font-family: Roboto;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 160%;
+    }
+
+    .infobox {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100vh - 12vw);
+    }
+
+    article {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+  }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/desktop.css">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.3.0/lib/p5.js"></script>
     <script type="text/javascript" src="canvg.js"></script>
@@ -26,43 +27,63 @@
             <p>
                 svg2p5 converts SVG markup into p5.js canvas code. It is based on <a class="link-inline" href="https://www.professorcloud.com/svg-to-canvas/" target="_blank" rel="noopener noreferrer"> Professor Cloud</a>’s SVG to HTML5 Converter and the <a class="link-inline" href="https://github.com/canvg/canvg" target="_blank" rel="noopener noreferrer">Canvg.js</a> library.
             </p>
+            <div class="bottom-text">
+                <ul>
+                    <em>What svg2p5 is <span class="pinktxt">pretty good </span> at:</em>
+                        <li>Bezier-based forms, like those made with the pen tool in GIMP.</li>
+                        <li>Path elements with many points.</li>
+                        <li>Stroke caps and stroke joins.</li>
+                        <li>Color attributes in HEX and RGB.</li>
+                </ul>
+                <ul>
+                    <em>What svg2p5 <span class="pinktxt">sucks </span> at (for now):</em>
+                        <li>Native elements, like circles.</li>
+                        <li>Color gradients.</li>
+                        <li>Embedded text.</li>
+                        <li>Multi-layered, multi-path SVGs,  especially with stroke involved.</li>
+                </ul>
+                <p>And many more. Consider filing an issue or contributing to the project.</p>
+            </div>
         </article>
         <a href="https://github.com/ygev/svg2p5" target="_blank" rel="noopener noreferrer"><div class="link-big"> 🌱 GitHub Repository</div></a>
     </section>
 
-    <section class="svg__wrapper">
-        <div class="topper topper__white">
-            <label for="svg">
-                <h1>SVG Markup</h1>
-            </label>
-        </div>
-        <textarea id="svg-input" name="svg" rows="4" cols="50"></textarea> 
-        <div class="buttons">
-            <button id="clear-button">Clear</button>
-            <button id="convert-button">Convert</button>
-        </div>
-    </section>
+    <div class="textarea__wrappers">
+        <section class="svg__wrapper">
+            <div class="topper topper__white">
+                <label for="svg">
+                    <h1>SVG Markup</h1>
+                </label>
+            </div>
+            <textarea id="svg-input" name="svg" rows="4" cols="50"></textarea> 
+            <div class="buttons">
+                <button id="clear-button">Clear</button>
+                <button id="convert-button">Convert</button>
+            </div>
+        </section>
 
-    <section class="p5__wrapper">
-        <div class="topper topper__white">
-            <label for="p5">
-                <h1>p5 Canvas</h1>
-            </label>
-        </div>
-        <textarea id="js-output" name="p5" rows="4" cols="50"></textarea> 
-        <div class="buttons">
-            <button id="copy-button">Copy</button>
-        </div>
-    </section>
+        <section class="p5__wrapper">
+            <div class="topper topper__white">
+                <label for="p5">
+                    <h1>p5 Canvas</h1>
+                </label>
+            </div>
+            <textarea id="js-output" name="p5" rows="4" cols="50"></textarea> 
+            <div class="buttons">
+                <button id="copy-button">Copy</button>
+            </div>
+        </section>
+    </div>
 
     <canvas id="temp2"></canvas>
     <canvas id="temp"></canvas>
     <script>
         function setup() {
-            createCanvas((windowWidth - 32), windowHeight);
+            createCanvas((windowWidth/3 - 32), windowWidth/3);
             background(154);
         }
         function draw() {
+            resizeCanvas((windowWidth/3 - 32), windowWidth/3);
             let p5Code = document.getElementById("js-output").value;
             if (p5Code)
                 eval(p5Code);

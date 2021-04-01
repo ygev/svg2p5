@@ -22,6 +22,8 @@
   body {
     background: var(--gray);
     padding: 16px;
+    display: flex;
+    flex-direction: column;
   }
   
 /* Toppers */
@@ -30,7 +32,7 @@
     font-family: ChicagoFLF;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1em;
     line-height: 28px;
     display: flex;
     align-items: center;
