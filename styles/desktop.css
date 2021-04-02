@@ -38,6 +38,10 @@
         line-height: 160%;
     }
 
+    section, main {
+        margin-bottom:0;
+    }
+
     .infobox {
         display: flex;
         flex-direction: column;
@@ -51,4 +55,25 @@
         justify-content: space-between;
         height: 100%;
     }
+
+    .textarea__wrappers {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 12vw);
+        justify-content: space-between;
+    }
+
+    .svg__wrapper, .p5__wrapper {
+        height: calc((100vh - 12vw)/2);
+    }
+
+    .svg__wrapper {
+        margin-bottom: 16px;
+    }
+
+    textarea {
+        min-height: calc(100% - 32px);
+        max-height: calc(100% - 32px);
+    }
+
   }
