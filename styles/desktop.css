@@ -2,6 +2,14 @@
     body {
       flex-direction: row;
       padding: 6vw;
+      justify-content: center;
+      align-content: center;
+    }
+
+    .all__wrapper {
+        display: flex;
+        max-width: 1280px;
+        justify-content:center;
     }
 
     .bottom-text {
@@ -38,8 +46,9 @@
         line-height: 160%;
     }
 
-    section, main {
+    section, .canvas__wrapper {
         margin-bottom:0;
+        margin-left: 16px;
     }
 
     .infobox {

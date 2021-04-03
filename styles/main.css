@@ -77,7 +77,7 @@ p {
   line-height: 160%;
 }
 
-section, main {
+section, .canvas__wrapper  {
   background: var(--white);
   border: var(--border);
   box-shadow: var(--shadow);
