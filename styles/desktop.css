@@ -52,7 +52,7 @@
     }
 
     .canvas__wrapper {
-        width: 25vw;
+        width: 30vw;
         margin-left: 16px;
     }
 
@@ -61,7 +61,7 @@
         flex-direction: column;
         justify-content: space-between;
         height: calc(100vh - 12vw);
-        width: 30vw;
+        width: 25vw;
         margin-right: 16px;
     }
 
@@ -77,6 +77,7 @@
         flex-direction: column;
         height: calc(100vh - 12vw);
         justify-content: space-between;
+        width: 40vw;
     }
 
     .svg__wrapper, .p5__wrapper {
