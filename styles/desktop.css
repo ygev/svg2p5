@@ -81,13 +81,9 @@
     }
 
     .svg__wrapper, .p5__wrapper {
-        height: calc((100vh - 12vw)/2);
+        height: calc((100vh - 12vw - 16px)/2);
     }
-
-    .svg__wrapper {
-        margin-bottom: 16px;
-    }
-
+    
     textarea {
         min-height: calc(100% - 30px);
         max-height: calc(100% - 30px);
