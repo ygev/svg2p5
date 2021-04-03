@@ -62,6 +62,8 @@
   display: flex;
   align-content: center;
   justify-content: center;
+  position: sticky;
+  left: 0;
 }
 
 .topper__white {
