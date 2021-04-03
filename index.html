@@ -82,12 +82,12 @@
     <canvas id="temp"></canvas>
     <script>
         function setup() {
-            myCanvas = createCanvas((windowWidth/3 - 32), windowWidth/3);
+            myCanvas = createCanvas((windowWidth), windowWidth/3);
             myCanvas.parent("canvasWrapper");
             background(154);
         }
         function draw() {
-            resizeCanvas((windowWidth/3 - 32), windowWidth/3);
+            resizeCanvas((windowWidth), windowWidth/3);
             let p5Code = document.getElementById("js-output").value;
             if (p5Code)
                 eval(p5Code);

@@ -85,10 +85,15 @@ section, .canvas__wrapper  {
   position: relative;
 }
 
+.canvas__wrapper {
+  overflow: auto;
+}
+
 article {
   background: var(--white);
   padding: 24px;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Link */

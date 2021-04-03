@@ -4,6 +4,7 @@
       padding: 6vw;
       justify-content: center;
       align-content: center;
+      overflow-y: hidden;
     }
 
     .all__wrapper {
@@ -48,6 +49,10 @@
 
     section, .canvas__wrapper {
         margin-bottom:0;
+    }
+
+    .canvas__wrapper {
+        width: 25vw;
         margin-left: 16px;
     }
 
@@ -56,6 +61,8 @@
         flex-direction: column;
         justify-content: space-between;
         height: calc(100vh - 12vw);
+        width: 30vw;
+        margin-right: 16px;
     }
 
     article {
