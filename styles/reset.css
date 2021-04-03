@@ -58,6 +58,7 @@ input, textarea, button {
 	min-width: 100%;
 	min-height: 50vh;
 	max-height: 50vh;
+	resize: none;
   }
 
   ::selection {
