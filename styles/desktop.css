@@ -89,8 +89,8 @@
     }
 
     textarea {
-        min-height: calc(100% - 32px);
-        max-height: calc(100% - 32px);
+        min-height: calc(100% - 30px);
+        max-height: calc(100% - 30px);
     }
 
   }

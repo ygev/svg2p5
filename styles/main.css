@@ -161,7 +161,5 @@ button:hover {
 textarea {
   border: var(--border);
   font-family: "Roboto Mono";
-  font-size: 12px;
-	max-width: 99.5%;
-	min-width: 99.5%;
+  font-size: 14px;
 }

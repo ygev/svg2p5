@@ -52,8 +52,10 @@ input, textarea, button {
   }
   
   textarea {
-	max-width: 99%;
-	min-width: 99%;
+	box-sizing: border-box;
+	padding:8px;
+	max-width: 100%;
+	min-width: 100%;
 	min-height: 50vh;
 	max-height: 50vh;
   }
