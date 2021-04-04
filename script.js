@@ -68,8 +68,17 @@ function canvasToP5(cvd){
         .replaceAll('strokeStyle','stroke()')
         .replaceAll('transform(','translate(')
 
+    let cleaned = cleanP5(p5cvd);
+    return cleaned;
+
+}
+
+function cleanP5(p5cvd) {
     // split this into an array of strings, one per line
     var p5cvdArr = p5cvd.split('\n')
+
+    let mostRecentVertex = 0;
+    let beginShapeFound = false;
 
     for (let i = 0; i < p5cvdArr.length; i++){
         if (p5cvdArr[i].startsWith("miterLimit") || p5cvdArr[i].startsWith("fill();") || p5cvdArr[i].startsWith("stroke();") ){
@@ -111,15 +120,59 @@ function canvasToP5(cvd){
             else
                 return remAdjDups([y, ...rest], [...out, x]);
         }
-
         p5cvdArr = remAdjDups(p5cvdArr.slice());
+
+        // Ensure that lonely beginShape()s have an endShape() friend
+        console.debug("examining element " + i + ": " + p5cvdArr[i]);
+        if (!beginShapeFound  && p5cvdArr[i].startsWith("beginShape()")) {
+            beginShapeFound = true;
+            console.debug("found beginShape!")
+        } else if (beginShapeFound) {
+            if (p5cvdArr[i].startsWith("endShape()")) {
+                console.debug("found endShape!")
+                // nothing to do for this beginShape. reset state
+                mostRecentVertex = 0;
+                beginShapeFound = false;
+            } else if (p5cvdArr[i].startsWith("vertex(")) {
+                console.debug(`startsWith vertex`)
+                mostRecentVertex = i;
+            } else if (p5cvdArr[i].startsWith("bezierVertex(")) {
+                console.debug(`startsWith bezierVertex`)
+                mostRecentVertex = i;
+            } else if (p5cvdArr[i].startsWith("beginShape()")) {
+                console.debug("beginShape missing endShape()")
+                // beginShape missing endShape()
+                if (mostRecentVertex != 0) {
+                    // if we had found vertex() or bezierVertex, append it to the most recent one
+                    p5cvdArr.splice(mostRecentVertex + 1, 0, "endShape()");
+                } else {
+                    // else, just insert here
+                    p5cvdArr.splice(i + 1, 0, "endShape()");
+                }
+
+                // move past current element (we added to the array, so update the pointer)
+                i++;
+                // finally, reset state
+                mostRecentVertex = 0;
+            }
+        }
+
+    } // end for loop
+
+    // We traversed the whole array and there's still a lonely beginShape. Put an endShape at the end.
+    if (beginShapeFound) {
+        // beginShape missing endShape()
+        if (mostRecentVertex != 0) {
+            // if we had found vertex() or bezierVertex, append it to the most recent one
+            p5cvdArr.splice(mostRecentVertex + 1, 0, "endShape()");
+        } else {
+            // else, just put on the end
+            p5cvdArr.push("endShape()");
+        }
     }
-    
 
-
-    p5cvd = p5cvdArr.join('\n')
-
-    return p5cvd;
+    let cleanedP5 = p5cvdArr.join('\n')
+    return cleanedP5;
 }
 
 // Jquery disgusting starts here
