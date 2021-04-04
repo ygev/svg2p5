@@ -81,7 +81,7 @@ function cleanP5(p5cvd) {
     let beginShapeFound = false;
 
     for (let i = 0; i < p5cvdArr.length; i++){
-        if (p5cvdArr[i].startsWith("miterLimit") || p5cvdArr[i].startsWith("fill();") || p5cvdArr[i].startsWith("stroke();") ){
+        if (p5cvdArr[i].startsWith("miterLimit") || p5cvdArr[i].startsWith("fill();") || p5cvdArr[i].startsWith("stroke();") || p5cvdArr[i].startsWith("drawingContext") ){
             p5cvdArr.splice(i, 1);
             i--;
             continue; // we just erased the current element; go to next element now
