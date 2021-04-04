@@ -77,31 +77,26 @@ function canvasToP5(cvd){
             i--;
             continue; // we just erased the current element; go to next element now
         }
-
+        // Move whatever is () = inside the parentheses.
         if(p5cvdArr[i].startsWith("fill") && p5cvdArr[i].includes("=")){
             let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 1, p5cvdArr[i].indexOf(";"))
             p5cvdArr[i] = "fill(" + content.trim() + ")"
-            // console.log(p5cvdArr[i]);
         }
         else if (p5cvdArr[i].startsWith("stroke(") && p5cvdArr[i].includes("=")){
             let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 1, p5cvdArr[i].indexOf(";"))
             p5cvdArr[i] = "stroke(" + content.trim() + ")"
-            // console.log(p5cvdArr[i]);
         }
         else if (p5cvdArr[i].startsWith("strokeWeight") && p5cvdArr[i].includes("=")){
             let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 1, p5cvdArr[i].indexOf(";"))
             p5cvdArr[i] = "strokeWeight(" + content.trim() + ")"
-            // console.log(p5cvdArr[i]);
         }
         else if (p5cvdArr[i].startsWith("strokeCap") && p5cvdArr[i].includes("=")){
             let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 3, p5cvdArr[i].indexOf(";") - 1)
             p5cvdArr[i] = "strokeCap(" + content.trim().toUpperCase() + ");"
-            // console.log(p5cvdArr[i]);
         }
         else if (p5cvdArr[i].startsWith("strokeJoin") && p5cvdArr[i].includes("=")){
             let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 3, p5cvdArr[i].indexOf(";") - 1)
             p5cvdArr[i] = "strokeJoin(" + content.trim().toUpperCase() + ");"
-            // console.log(p5cvdArr[i]);
         }
 
         if (p5cvdArr[i].startsWith("strokeCap(BUTT)")){
