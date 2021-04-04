@@ -15,7 +15,7 @@
     --white: #ffffff;
     --gray: #DCDCDC;
     --pink: #EA2560;
-    --border: 1px solid var(--black);
+    --border: 2px solid var(--black);
     --shadow: 1px 1px 0px 1px #000000;
   }
 
@@ -162,7 +162,7 @@ button:hover {
 
 /* Inputs */
 textarea {
-  border: var(--border);
+  /* border: var(--border); */
   font-family: "Roboto Mono";
   font-size: 14px;
 }
