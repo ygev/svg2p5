@@ -26,7 +26,7 @@
             </header>
             <article>
                 <p>
-                    svg2p5 converts SVG markup into p5.js canvas code. It is based on <a class="link-inline" href="https://www.professorcloud.com/svg-to-canvas/" target="_blank" rel="noopener noreferrer"> Professor Cloud</a>’s SVG to HTML5 Converter and the <a class="link-inline" href="https://github.com/canvg/canvg" target="_blank" rel="noopener noreferrer">Canvg.js</a> library.
+                    svg2p5 converts SVG markup into p5.js canvas code. It is based on <a class="link-inline" href="http://www.professorcloud.com/svg-to-canvas/" target="_blank" rel="noopener noreferrer"> Professor Cloud</a>’s SVG to HTML5 Converter and the <a class="link-inline" href="https://github.com/canvg/canvg" target="_blank" rel="noopener noreferrer">Canvg.js</a> library.
                 </p>
                 <div class="bottom-text">
                     <ul>
@@ -75,29 +75,49 @@
                 </div>
             </section>
         </div>
-        <div class="canvas__wrapper" id="canvasWrapper"><div class="topper topper__white">
-            <label for="p5">
-                <h1>Canvas Preview</h1>
-            </label>
-        </div>
+        <div class="canvas__wrapper" id="canvasWrapper">
+            <div class="topper topper__white">
+                <label for="p5">
+                    <h1>Canvas Preview</h1>
+                </label>
+            </div>
         </div>
     </div>
+
+    <div id="hiddenSvg" style="display: none;"></div>
 
     <canvas id="temp2"></canvas>
     <canvas id="temp"></canvas>
     <script>
+        // secretly render SVG so we can rip out the width
+        let svgSource = document.getElementById("svg-input").value;
+        let width = 400; // default
+        if (svgSource) {
+            try {
+                document.getElementById("hiddenSvg").innerHTML = svgSource;
+                width = document.getElementById("hiddenSvg").children[0].width.baseVal.value;
+                console.debug("determined svg width: " + width)
+            } catch (e) {
+                console.warn("Unable to determine width of SVG; falling back to " + width + ". Error:", e);
+            }
+        }
+
         function setup() {
-            myCanvas = createCanvas(windowWidth/3, windowWidth/3);
+            myCanvas = createCanvas(100, 100);
             myCanvas.parent("canvasWrapper");
             background(154);
         }
+
         function draw() {
-            resizeCanvas(windowWidth/3, windowWidth/3);
+            // height is based off container
+            const height = document.getElementById("canvasWrapper").offsetHeight - 36;
+            resizeCanvas(791, height);
             let p5Code = document.getElementById("js-output").value;
+            //console.log(p5Code);
             if (p5Code)
                 eval(p5Code);
             else
-                clear();            
+                clear();
         }
     </script>
 </body>

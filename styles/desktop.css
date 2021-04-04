@@ -54,6 +54,7 @@
     .canvas__wrapper {
         width: 30vw;
         margin-left: 16px;
+        display: block;
     }
 
     .infobox {
@@ -83,7 +84,7 @@
     .svg__wrapper, .p5__wrapper {
         height: calc((100vh - 12vw - 16px)/2);
     }
-    
+
     textarea {
         min-height: calc(100% - 30px);
         max-height: calc(100% - 30px);

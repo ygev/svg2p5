@@ -66,6 +66,7 @@ function canvasToP5(cvd){
         .replaceAll('restore()','drawingContext.restore()')
         .replaceAll('lineWidth','strokeWeight()')
         .replaceAll('strokeStyle','stroke()')
+        .replaceAll('transform(','translate(')
 
     // split this into an array of strings, one per line
     var p5cvdArr = p5cvd.split('\n')

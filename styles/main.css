@@ -89,6 +89,7 @@ section, .canvas__wrapper  {
 
 .canvas__wrapper {
   overflow: auto;
+  display: none;
 }
 
 article {
