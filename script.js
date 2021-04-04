@@ -98,11 +98,24 @@ function canvasToP5(cvd){
             let content = p5cvdArr[i].substring(p5cvdArr[i].indexOf("=") + 3, p5cvdArr[i].indexOf(";") - 1)
             p5cvdArr[i] = "strokeJoin(" + content.trim().toUpperCase() + ");"
         }
-
         if (p5cvdArr[i].startsWith("strokeCap(BUTT)")){
             p5cvdArr[i] = "strokeCap(PROJECT);"
         }
+        // Remove adjacent duplicates 
+        const remAdjDups = ([x, y, ...rest], out = []) =>
+        {
+            if (!rest.length)
+                return (x === y) ? [...out, x] : [...out, x, y];
+            else if (x === y)
+                return remAdjDups([x, ...rest], out);
+            else
+                return remAdjDups([y, ...rest], [...out, x]);
+        }
+
+        p5cvdArr = remAdjDups(p5cvdArr.slice());
     }
+    
+
 
     p5cvd = p5cvdArr.join('\n')
 
