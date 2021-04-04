@@ -102,6 +102,9 @@
                 console.warn("Unable to determine width of SVG; falling back to " + width + ". Error:", e);
             }
         }
+    
+        // height is based off container
+        const height = document.getElementById("canvasWrapper").offsetHeight - 64;
 
         function setup() {
             myCanvas = createCanvas(100, 100);
@@ -110,8 +113,6 @@
         }
 
         function draw() {
-            // height is based off container
-            const height = document.getElementById("canvasWrapper").offsetHeight - 36;
             resizeCanvas(791, height);
             let p5Code = document.getElementById("js-output").value;
             //console.log(p5Code);
