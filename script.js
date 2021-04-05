@@ -27,7 +27,7 @@ var cvd = function () {
                         CanvasRenderingContext2D.prototype[prop] = caller(prop);
                     }
                 }
-                catch (e) {}
+                catch (e) {console.warn(e)}
             }
         }
     }    
@@ -51,6 +51,7 @@ var cvd = function () {
 
 // Canvas to P5
 function canvasToP5(cvd){
+    console.debug("p5cvd raw: " + JSON.stringify(cvd.getOutput()))
     let p5cvd = cvd.getOutput()
         .replaceAll('ctx.','')
         .replaceAll('beginPath()','beginShape()')
@@ -80,8 +81,11 @@ function cleanP5(p5cvd) {
     let mostRecentVertex = 0;
     let beginShapeFound = false;
 
+    console.debug("p5cvdArr")
+    console.debug(p5cvdArr)
     for (let i = 0; i < p5cvdArr.length; i++){
-        if (p5cvdArr[i].startsWith("miterLimit") || p5cvdArr[i].startsWith("fill();") || p5cvdArr[i].startsWith("stroke();") || p5cvdArr[i].startsWith("drawingContext") ){
+        // console.debug("p5cvdArr: " + p5cvdArr[i]);
+        if (p5cvdArr[i].startsWith("miterLimit") || p5cvdArr[i].startsWith("fill();") || p5cvdArr[i].startsWith("stroke();") || p5cvdArr[i].startsWith("drawingContext") || p5cvdArr[i].startsWith("translate(0,0)") || p5cvdArr[i].startsWith("scale(1,1)") ){
             p5cvdArr.splice(i, 1);
             i--;
             continue; // we just erased the current element; go to next element now
@@ -169,6 +173,14 @@ function cleanP5(p5cvd) {
             // else, just put on the end
             p5cvdArr.push("endShape()");
         }
+    }
+
+    // The first beingShape...endShape always represent a box around the object. Get rid of this:
+    let start = -1, end = -1;
+    start = p5cvdArr.indexOf("beginShape();");
+    end = p5cvdArr.indexOf("endShape();");
+    if (start != -1 && end != -1) {
+        p5cvdArr.splice(start, end - start + 1);
     }
 
     let cleanedP5 = p5cvdArr.join('\n')
