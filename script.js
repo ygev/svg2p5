@@ -50,7 +50,7 @@ var cvd = function () {
 }();      
 
 // Canvas to P5
-function canvasToP5(cvd){
+function canvasToP5(cvd, rawSvg) {
     console.debug("p5cvd raw: " + JSON.stringify(cvd.getOutput()))
     let p5cvd = cvd.getOutput()
         .replaceAll('ctx.','')
@@ -69,12 +69,23 @@ function canvasToP5(cvd){
         .replaceAll('strokeStyle','stroke()')
         .replaceAll('transform(','translate(')
 
-    let cleaned = cleanP5(p5cvd);
+    let viewport = false;
+    if (rawSvg.includes("svg width=")
+        || rawSvg.includes("svg height=")
+        || rawSvg.includes("svg width =")
+        || rawSvg.includes("svg height =")
+        || rawSvg.includes("svg viewbox=")
+        || rawSvg.includes("svg viewbox =")
+        ) {
+        viewport = true;
+    }
+
+    let cleaned = cleanP5(p5cvd, viewport);
     return cleaned;
 
 }
 
-function cleanP5(p5cvd) {
+function cleanP5(p5cvd, viewport) {
     // split this into an array of strings, one per line
     var p5cvdArr = p5cvd.split('\n')
 
@@ -175,12 +186,14 @@ function cleanP5(p5cvd) {
         }
     }
 
-    // The first beingShape...endShape always represent a box around the object. Get rid of this:
-    let start = -1, end = -1;
-    start = p5cvdArr.indexOf("beginShape();");
-    end = p5cvdArr.indexOf("endShape();");
-    if (start != -1 && end != -1) {
-        p5cvdArr.splice(start, end - start + 1);
+    // If the svg viewport was defined, canvg will create an extra box around the object... get rid of it:
+    if (viewport) {
+        let start = -1, end = -1;
+        start = p5cvdArr.indexOf("beginShape();");
+        end = p5cvdArr.indexOf("endShape();");
+        if (start != -1 && end != -1) {
+            p5cvdArr.splice(start, end - start + 1);
+        }
     }
 
     let cleanedP5 = p5cvdArr.join('\n')
@@ -212,10 +225,9 @@ $(document).ready(function(){
                   canvg('temp',  str);
            
                   cvd.restoreFuncs();
-                  let p5cvd = canvasToP5(cvd)
+                  let p5cvd = canvasToP5(cvd, str)
                   $('#js-output').val(  p5cvd );  
                  
-                  console.log(canvasToP5(cvd))                     
           });
           
           $("#copy-button").click(function(){
