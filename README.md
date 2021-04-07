@@ -46,5 +46,5 @@ Make svg2p5 support [all SVG attributes](https://developer.mozilla.org/en-US/doc
 ### Credits
 - **Algorithm** Based on [Professor Cloud](https://www.professorcloud.com/svg-to-canvas/) SVG to HTML5 converter, which in turn uses [canvg.js](https://github.com/canvg/canvg)!
 - **Interface** MacOS Classic System 3.
-- **Colophon** [Geneva](https://fontsarena.com/chicago-flf-by-susan-kare-robin-casady/) by Susan Kare, [Roboto](https://fonts.google.com/specimen/Roboto) and [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono) by Christian Robertson
+- **Colophon** [Chicago12](https://fontsarena.com/chicago-flf-by-susan-kare-robin-casady/) by Susan Kare, [Roboto](https://fonts.google.com/specimen/Roboto) and [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono) by Christian Robertson
 - **I 💖 [P5.JS](https://p5js.org/)**
