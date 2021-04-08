@@ -67,10 +67,6 @@
   left: 0;
 }
 
-.topper__white {
-/*  background: var(--white); */
-}
-
 .topper__white label {
   width: 100%;
   text-align: center;
@@ -90,11 +86,30 @@
   background: initial;
 }
 
+.topper label h1 {
+  background: var(--white);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
 .topper-lines {
-  background: lightgray;
+  background: var(--white);
   z-index: -1;
   position: absolute;
   height: 28px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  width: 98%;
+  height: 1px;
+  background: var(--black);
+  margin-top: 2px;
 }
 
 /* Articles */
