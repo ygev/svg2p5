@@ -44,12 +44,13 @@
     text-align: center;
   }
   
- .title-left{
+ .title-side.title-left {
   background: var(--pink);
   border-right: var(--border)
 }
 
 .title-side {
+  background: var(--white);
   width: 50%;
   display: flex;
   align-content: center;
@@ -66,8 +67,49 @@
   left: 0;
 }
 
-.topper__white {
+.topper__white label {
+  width: 100%;
+  text-align: center;
+}
+
+.topper__white label h1 {
+  display: inline-block;
+}
+
+/* Selected Textarea Hackery */
+
+.svg__wrapper, .p5__wrapper {
+    background: var(--white);
+}
+
+.svg__wrapper:focus-within, .p5__wrapper:focus-within {
+  background: initial;
+}
+
+.topper label h1 {
   background: var(--white);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.topper-lines {
+  background: var(--white);
+  z-index: -1;
+  position: absolute;
+  height: 28px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  width: 98%;
+  height: 1px;
+  background: var(--black);
+  margin-top: 2px;
 }
 
 /* Articles */
@@ -79,8 +121,9 @@ p {
   line-height: 160%;
 }
 
+
+
 section, .canvas__wrapper  {
-  background: var(--white);
   border: var(--border);
   box-shadow: var(--shadow);
   margin-bottom: 16px;
@@ -88,6 +131,7 @@ section, .canvas__wrapper  {
 }
 
 .canvas__wrapper {
+  background: var(--white);
   overflow: auto;
   display: none;
 }
@@ -162,6 +206,7 @@ button:hover {
 
 /* Inputs */
 textarea {
+  background: var(--white);
   /* border: var(--border); */
   font-family: "Roboto Mono";
   font-size: 14px;
