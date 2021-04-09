@@ -243,7 +243,7 @@ $(document).ready(function(){
             setInterval(function() {
                 document.getElementById("copy-button").innerHTML = "Copy";
                 document.getElementById("copy-button").style.color = "var(--black)";
-                document.getElementById("copy-button").style.background = "var(--pink)";
+                document.getElementById("copy-button").style.background = "var(--white)";
               }, 3000);
         });
 });
