@@ -68,6 +68,7 @@ function canvasToP5(cvd, rawSvg) {
         .replaceAll('lineWidth','strokeWeight()')
         .replaceAll('strokeStyle','stroke()')
         .replaceAll('transform(','translate(')
+        .replaceAll('quadraticCurveTo(','quadraticVertex(')
 
     let viewport = false;
     if (rawSvg.includes("svg width=")
@@ -154,11 +155,14 @@ function cleanP5(p5cvd, viewport) {
             } else if (p5cvdArr[i].startsWith("bezierVertex(")) {
                 console.debug(`startsWith bezierVertex`)
                 mostRecentVertex = i;
+            } else if (p5cvdArr[i].startsWith("quadraticVertex(")) {
+                console.debug(`startsWith quadraticVertex`)
+                mostRecentVertex = i;
             } else if (p5cvdArr[i].startsWith("beginShape()")) {
                 console.debug("beginShape missing endShape()")
                 // beginShape missing endShape()
                 if (mostRecentVertex != 0) {
-                    // if we had found vertex() or bezierVertex, append it to the most recent one
+                    // if we had found vertex() or bezierVertex or quadraticVertex, append it to the most recent one
                     p5cvdArr.splice(mostRecentVertex + 1, 0, "endShape()");
                 } else {
                     // else, just insert here
