@@ -179,15 +179,15 @@ a.link-inline:hover {
 /* Buttons */
 
 button {
-  background: var(--pink);
+  background: var(--white);
   border: var(--border);
-  font-family: Roboto;
-  font-size: 18px;
+  font-family: 'ChicagoFLF';
+  font-size: 14px;
   line-height: 21px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6px 8px;
+  padding: 4px 6px;
   margin-left: 8px;
 }
 
