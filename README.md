@@ -41,7 +41,7 @@ Estimated completion time: end of April 2021.
 - [ ] Update canvg.js to current version instead of using the ancient one that came with Professor Cloud.
 
 ### Long-Term Objective
-Make svg2p5 support [all SVG attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute) that have p5.js equivalents. That includes, shadows, text, gradients, native shapes, etc.
+Make svg2p5 support [all SVG attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute) that have p5.js equivalents. That includes shadows, text, gradients, native shapes, etc.
 
 ### Credits
 - **Algorithm** Based on [Professor Cloud](https://www.professorcloud.com/svg-to-canvas/) SVG to HTML5 converter, which in turn uses [canvg.js](https://github.com/canvg/canvg)!
