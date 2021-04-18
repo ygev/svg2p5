@@ -191,6 +191,10 @@ button {
   margin-left: 8px;
 }
 
+button:disabled {
+  color: #7F7F7F;
+}
+
 button:hover {
   background: var(--black);
   color: var(--white);
