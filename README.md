@@ -37,11 +37,11 @@ Generally, the output may be imperfect and require some manual cleaning.
 ### Short-Term To-Do List
 Estimated completion time: end of April 2021.
 - [ ] Error prevention through linting SVG markup for unsupported attributes, notifying user and disabling conversion if that is the case.
-- [ ] MacOS Classic System 3 style active states for windows.
+- [x] MacOS Classic style active states for windows.
 - [ ] Update canvg.js to current version instead of using the ancient one that came with Professor Cloud.
 
 ### Long-Term Objective
-Make svg2p5 support [all SVG attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute) that have p5.js equivalents. That includes, shadows, text, gradients, native shapes, etc.
+Make svg2p5 support [all SVG attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute) that have p5.js equivalents. That includes shadows, text, gradients, native shapes, etc.
 
 ### Credits
 - **Algorithm** Based on [Professor Cloud](https://www.professorcloud.com/svg-to-canvas/) SVG to HTML5 converter, which in turn uses [canvg.js](https://github.com/canvg/canvg)!
