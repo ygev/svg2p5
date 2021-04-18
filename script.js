@@ -242,15 +242,14 @@ $(document).ready(function(){
             document.getElementById("copy-button").style.background = "var(--black)";
             setInterval(function() {
                 document.getElementById("copy-button").innerHTML = "Copy";
-                document.getElementById("copy-button").style.color = "var(--black)";
-                document.getElementById("copy-button").style.background = "var(--white)";
+                document.getElementById("copy-button").style.color = "";
+                document.getElementById("copy-button").style.background = "";
               }, 3000);
         });
 });
 
 
 // TODO
-// Kill Clear button, it's unnecessary.
 // SVG Button disabled by default, P5 Button disabled by default
 // If no text inside SVG Textarea, keep buttons disabled.
 // If text inside SVG, but invalid, display error message and keep buttons disabled.
