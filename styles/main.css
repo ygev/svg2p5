@@ -15,6 +15,7 @@
     --white: #ffffff;
     --gray: #DCDCDC;
     --pink: #EA2560;
+    --disabled: #7F7F7F;
     --border: 1px solid var(--black);
     --shadow: 1px 1px 0px 1px #000000;
   }
@@ -192,12 +193,17 @@ button {
 }
 
 button:disabled {
-  color: #7F7F7F;
+  color: var(--disabled);
 }
 
 button:hover {
   background: var(--black);
   color: var(--white);
+}
+
+button:hover:disabled {
+  background: initial;
+  color: var(--disabled);
 }
 
 .buttons {

@@ -231,7 +231,8 @@ $(document).ready(function(){
                   cvd.restoreFuncs();
                   let p5cvd = canvasToP5(cvd, str)
                   $('#js-output').val(  p5cvd );  
-                 
+
+                  setCopyButtonState();
           });
           
           $("#copy-button").click(function(){
@@ -248,10 +249,23 @@ $(document).ready(function(){
         });
 });
 
+function setConvertButtonState() {
+    if (document.getElementById("svg-input").value === "") {
+        document.getElementById("convert-button").disabled = true;
+    } else {
+        document.getElementById("convert-button").disabled = false;
+    }
+}
+
+function setCopyButtonState() {
+    if (document.getElementById("js-output").value === "") {
+        document.getElementById("copy-button").disabled = true;
+    } else {
+        document.getElementById("copy-button").disabled = false;
+    }
+}
+
 
 // TODO
-// SVG Button disabled by default, P5 Button disabled by default
-// If no text inside SVG Textarea, keep buttons disabled.
 // If text inside SVG, but invalid, display error message and keep buttons disabled.
 // If text inside SVG and valid, make buttons enabled.
-// Upon clicking convert, if there is no text inside p5 textarea, display error

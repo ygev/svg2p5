@@ -65,10 +65,10 @@
                         <h1>SVG Markup</h1>
                     </label>
                 </div>
-                <textarea spellcheck="false" placeholder="Paste &#60;svg&#62; or &#60;path&#62; HTML markup and click Convert." id="svg-input" class="html" name="svg" rows="4" cols="50"></textarea> 
+                <textarea spellcheck="false" placeholder="Paste &#60;svg&#62; or &#60;path&#62; HTML markup and click Convert." id="svg-input" class="html" name="svg" rows="4" cols="50" onkeyup="setConvertButtonState()"></textarea> 
                 <div class="buttons">
                     <!-- <button id="clear-button">Clear</button> -->
-                    <button id="convert-button">Convert</button>
+                    <button id="convert-button" disabled>Convert</button>
                 </div>
             </section>
 
@@ -86,9 +86,9 @@
                         <h1>p5 Canvas</h1>
                     </label>
                 </div>
-                <textarea spellcheck="false" placeholder="Your p5.js markup will appear here!"  id="js-output" name="p5" rows="4" cols="50"></textarea> 
+                <textarea spellcheck="false" placeholder="Your p5.js markup will appear here!" id="js-output" name="p5" rows="4" cols="50" onkeyup="setCopyButtonState()"></textarea>
                 <div class="buttons">
-                    <button id="copy-button">Copy</button>
+                    <button id="copy-button" disabled>Copy</button>
                 </div>
             </section>
         </div>
