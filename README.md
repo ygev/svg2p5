@@ -35,7 +35,6 @@ Generally, the output may be imperfect and require some manual cleaning.
 - Sometimes you will find lonely `vertex()`s and `bezierVertex()`s that you will need to wrap with `beginShape()` and `endShape()` in order to see.
 
 ### Short-Term To-Do List
-Estimated completion time: end of April 2021.
 - [ ] Error prevention through linting SVG markup for unsupported attributes, notifying user and disabling conversion if that is the case.
 - [x] MacOS Classic style active states for windows.
 - [ ] Update canvg.js to current version instead of using the ancient one that came with Professor Cloud.
